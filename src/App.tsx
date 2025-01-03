@@ -5,7 +5,13 @@ import { LinearProgressBar } from "./components/ProgressBar/LinearProgressBar";
 import { BasicModal } from "./components/Modal/BasicModal";
 const App = () => {
   const [progress, setProgress] = useState(0);
-
+  const [show, setShow] = useState<boolean>(false);
+  const openModal = () => {
+    setShow(true);
+  };
+  const closeModal = () => {
+    setShow(false);
+  };
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -16,16 +22,19 @@ const App = () => {
     }, 100);
     return () => clearInterval(interval);
   }, []);
-  const gradientColors = [" #e6b3ff", " #ff99dd", " #d580ff"];
+  const gradientColors = ["rgb(200, 105, 248)", "rgb(214, 49, 101)"];
+
   return (
     <div>
+      {/* <button onClick={openModal}>Click ME</button> */}
+      <Button onClick={openModal} label="Click Me" />
       {/* <Button
-        label="Click Me"  
+        label="Hello"  
         disabled={false}
-        variant="secondary"
+        variant="outline"
         cursor="pointer"
-      /> */}
-      {/* <CircularProgressBar
+      />
+      <CircularProgressBar
         gradientColors={gradientColors}
         percentage={progress}
         size={200}
@@ -45,7 +54,13 @@ const App = () => {
         cursor={"pointer"}
         bubbleCount={15}
       /> */}
-      <BasicModal/>
+      <BasicModal
+        gradientColors={gradientColors}
+        closeModal={closeModal}
+        show={show}
+        iconsize={25}
+        size="md"
+      />
     </div>
   );
 };

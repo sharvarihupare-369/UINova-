@@ -52,6 +52,7 @@ export const Button: React.FC<ButtonProps> = ({
   textAlign,
   variant = "primary",
   disabled = false,
+  onClick
 }) => {
   return (
     <div>
@@ -72,6 +73,7 @@ export const Button: React.FC<ButtonProps> = ({
           cursor: cursor,
           textAlign: textAlign,
         }}
+        onClick={onClick}
         disabled={disabled}
         className={`button ${variant}`}
       >
